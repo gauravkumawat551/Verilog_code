@@ -1,0 +1,13 @@
+module tb();
+  reg [7:0] data;
+  wire odd_parity,even_parity;
+  parity_generator dut(.data(data),.even_parity(even_parity),.odd_parity(odd_parity));
+  initial begin
+    $dumpfile("parity generator.vcd");
+    $dumpvars;
+    data=8'b00110011;
+    #10
+    data=8'b11100000;
+    $finish;
+  end
+endmodule

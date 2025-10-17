@@ -1,0 +1,22 @@
+`timescale 1ns/1ps
+module tb();
+  reg clk,reset,ud;
+  wire [3:0]q;
+  up_down dut(.clk(clk),.reset(reset),.ud(ud),.q(q));
+  initial begin
+     clk=1'b0;
+    forever #10 clk=~clk;
+  end
+    
+  initial begin
+    $dumpfile("counter.vcd");
+    $dumpvars;
+     reset=0;ud=1;#200
+     ud=0;
+  end
+    initial begin
+      #600
+    $finish;
+  end
+endmodule
+  
